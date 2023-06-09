@@ -19,7 +19,7 @@ const Input = ({
   placeholder = 'Enter placeholder',
   type = 'text',
   value = '',
-  onChangeValue = (text: string) => { },
+  onChangeValue,
   errorMessage = '',
   labelClassName = '',
   inputClassName = '',

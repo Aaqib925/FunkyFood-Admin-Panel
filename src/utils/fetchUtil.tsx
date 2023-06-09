@@ -19,7 +19,6 @@ export const fetchUtil = async (data: FetchData) => {
         token = null,
         image = false,
         abortSignal = null,
-        credentials = "same-origin"
     } = data;
     let headers: Record<string, string> = {};
     if (!image) {
@@ -27,14 +26,13 @@ export const fetchUtil = async (data: FetchData) => {
     }
 
     if (token) {
-        headers = { ...headers, Authorization: token };
+        headers = { ...headers, token };
     }
 
     return fetch(`${AppConfig.env()?.API_URL}${url}`, {
         method,
         headers,
         body,
-        credentials,
         ...(abortSignal && { signal: abortSignal })
     }).then(handleFetchError);
 };

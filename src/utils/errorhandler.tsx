@@ -5,7 +5,7 @@ export const handleFetchError = async (res: any) => {
   if (res.status >= StatusCodes.BAD_REQUEST && res.status < StatusCodes.CONNECTION_TIMED_OUT) {
     logger(res, "Error while fetching")
     const response = await res.clone().json();
-    let errRes = {
+    const errRes = {
       ...response,
       status: res.status
     };

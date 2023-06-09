@@ -17,15 +17,6 @@ const RelatedPersons: React.FC = () => {
         Related To
       </p>
       <section className='flex items-center gap-x-2.5'>
-        {
-          persons.map(({ id, name, image }) => (
-            <RelatedPersonCard
-              keyId={id}
-              profileName={name}
-              profileImg={image}
-            />
-          ))
-        }
         <div className='flex items-center gap-x-1.5 cursor-pointer'>
           <div className='w-[38px] h-[38px] rounded-full bg-white border border-dashed border-[#00B3FF] text-xl flex justify-center items-center text-[#00B3FF] leading-snug'>+</div>
           <p className='font-[OpenSans-Regular] text-sm text-[#00B3FF]'>Add New</p>

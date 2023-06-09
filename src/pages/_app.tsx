@@ -11,7 +11,6 @@ import '@/styles/globals.css';
 import '@/styles/colors.css';
 import { useState } from 'react';
 import { ThemeContextProvider } from '@/context/ThemeContext';
-
 /**
  * !STARTERCONF info
  * ? `Layout` component is called in every page using `np` snippets. If you have consistent layout across all page, you can add it here too

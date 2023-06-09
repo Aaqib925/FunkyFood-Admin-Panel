@@ -1,5 +1,4 @@
 export const appendQueryParams = (url: string, paramsObj: Record<string, any>): string => {
-    let newUrl: string;
     const paramsArr: string[] = [];
     Object.keys(paramsObj).forEach((key) => {
         if (Array.isArray(paramsObj[key])) {
@@ -10,7 +9,7 @@ export const appendQueryParams = (url: string, paramsObj: Record<string, any>): 
             paramsArr.push(`${key}=${paramsObj[key]}`);
         }
     });
-    newUrl = `${url}?${paramsArr.join("&")}`;
+    const newUrl = `${url}?${paramsArr.join("&")}`;
     return newUrl;
 };
 

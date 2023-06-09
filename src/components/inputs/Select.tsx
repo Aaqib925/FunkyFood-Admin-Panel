@@ -15,7 +15,7 @@ const Select = ({
   label = '',
   labelId = '',
   value = '',
-  onChangeValue = (text: string) => { },
+  onChangeValue,
   errorMessage = '',
   labelClassName = '',
   selectClassName = '',

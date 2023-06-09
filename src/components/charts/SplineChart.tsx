@@ -45,7 +45,7 @@ const SplineChart = () => {
   })
 
   return (
-    <ApexCharts options={options} series={series} type="line" width={'100%'} height={"100%"} />
+    <ApexCharts options={options as any} series={series} type="line" width={'100%'} height={"100%"} />
   )
 }
 

@@ -18,7 +18,7 @@ export const ThemeContextProvider = ({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setIsLightTheme(localStorage.getItem('isLightTheme') === 'true');
+      // setIsLightTheme(localStorage.getItem('isLightTheme') === 'true');
     }
   }, []);
 
@@ -42,7 +42,7 @@ export const ThemeContextProvider = ({ children }: { children: React.ReactNode }
     >
       <MantineProvider
         theme={{
-          colorScheme: isLightTheme ? 'light' : 'dark',
+          colorScheme: 'light',
           primaryColor,
           primaryShade,
           headings: {

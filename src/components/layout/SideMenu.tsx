@@ -7,11 +7,6 @@ import APP_IMAGES from '@/constant/images';
 const navbarLinks = [
   {
     id: '1',
-    href: '/dashboard',
-    label: 'Dashboard',
-    iconSrc: APP_IMAGES.dashboardNavIcon,
-  }, {
-    id: '2',
     href: '/dashboard/products',
     label: 'Products',
     iconSrc: APP_IMAGES.dashboardNavIcon,
@@ -22,14 +17,14 @@ export default function SideMenu() {
   return (
     <aside className='fixed top-0 bottom-0 left-0 w-[250px] flex h-screen flex-col justify-between border-e bg-white'>
       <div className="flex flex-col items-stretch gap-14">
-        <div className='w-full flex justify-center items-center mt-14 px'>
+        <div className='w-[100px] h-[100px] mx-auto flex justify-center items-center mt-14 px rounded-full overflow-hidden'>
           <NextImage
             useSkeleton
             src={APP_IMAGES.sideMenuLogo}
             alt='Logo'
-            width={200}
-            height={38}
-            className='aspect-[200/38]'
+            width={150}
+            height={150}
+            className='aspect-square rounded-full'
           />
         </div>
 

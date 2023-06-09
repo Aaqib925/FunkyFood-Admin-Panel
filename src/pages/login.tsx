@@ -168,17 +168,17 @@ const LoginScreen = () => {
           </div>
         </div>
       </section>
-      <section className={'w-1/2 bg-[#FEF9EA] flex justify-center items-center relative z-10 px-12'}>
-        <div className='absolute z-20 top-0 left-0 w-full bottom-[20%]' style={styles.loginBanner}></div>
-        <div className='relative z-30 w-full'>
+      <section className={'w-1/2 flex justify-center items-center relative z-10'}>
+        <div className='absolute inset-0 blur-sm' style={styles.loginBanner}></div>
+        <div className='relative z-30 rounded-full shadow-2xl'>
           <NextImage
             useSkeleton
-            src={APP_IMAGES.loginImage}
+            src={APP_IMAGES.sideMenuLogo}
             alt='Login'
-            width={500}
-            height={500}
-            imgClassName='w-full'
-            className='w-full'
+            width={150}
+            height={150}
+            imgClassName='w-full rounded-full'
+            className='w-full rounded-full'
           />
         </div>
       </section>
