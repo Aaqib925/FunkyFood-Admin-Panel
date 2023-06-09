@@ -28,17 +28,17 @@ interface AppConfig {
 
 export const AppConfig: AppConfig = {
   LIMIT: 10,
-  PERSIST_SECRET_KEY: "musiker-admin-secret-key",
-  ENVIRONMENT: APP_ENVIRONMENT.LOCAL,
+  PERSIST_SECRET_KEY: "funkyfood-admin-secret-key",
+  ENVIRONMENT: APP_ENVIRONMENT.STAGING,
   ENVIRONMENTS: {
     [APP_ENVIRONMENT.LOCAL]: {
       API_URL: "http://localhost:3010",
     },
     [APP_ENVIRONMENT.STAGING]: {
-      API_URL: "http://localhost:3010",
+      API_URL: "https://us-central1-funkyfoodaaqib.cloudfunctions.net",
     },
     [APP_ENVIRONMENT.PRODUCTION]: {
-      API_URL: "http://localhost:3010",
+      API_URL: "https://us-central1-funkyfoodaaqib.cloudfunctions.net",
     }
   },
   env: () => {

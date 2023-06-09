@@ -12,27 +12,10 @@ const navbarLinks = [
     iconSrc: APP_IMAGES.dashboardNavIcon,
   }, {
     id: '2',
-    href: '/students',
-    label: 'Students',
-    iconSrc: APP_IMAGES.studentsNavIcon,
-    iconWidth: 17,
-    iconHeight: 19,
-  }, {
-    id: '3',
-    href: '/parents',
-    label: 'Parents',
-    iconSrc: APP_IMAGES.parentsNavIcon,
-  }, {
-    id: '4',
-    href: '/reports',
-    label: 'Reports',
-    iconSrc: APP_IMAGES.reportsNavIcon,
-  }, {
-    id: '5',
-    href: '/taskManagement',
-    label: 'Task Management',
-    iconSrc: APP_IMAGES.taskManagementNavIcon,
-  }
+    href: '/dashboard/products',
+    label: 'Products',
+    iconSrc: APP_IMAGES.dashboardNavIcon,
+  },
 ];
 
 export default function SideMenu() {
@@ -52,7 +35,7 @@ export default function SideMenu() {
 
         <nav aria-label="Main Nav" className="flex flex-col gap-y-1.5 items-stretch">
           {
-            navbarLinks.map(({ id, href, label, iconSrc, iconWidth = 24, iconHeight = 24 }) => {
+            navbarLinks.map(({ id, href, label, iconSrc, iconWidth = 24, iconHeight = 24 }: any) => {
               return (
                 <UnstyledLink key={id} href={href} className='flex items-center gap-5 py-5 px-8 duration-200  bg-white text-[#1E1E1E] hover:bg-[#1C355E] hover:text-white UnstyledLink'>
                   <span className='w-6 h-6 flex justify-center items-center'>

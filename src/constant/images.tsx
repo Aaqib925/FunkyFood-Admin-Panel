@@ -1,7 +1,7 @@
 
 
 const APP_IMAGES = {
-  loginImage: '/images/loginImage.svg',
+  loginImage: '/images/loginImage.jpg',
   loginBackImage: '/images/loginBackImage.svg',
   sideMenuLogo: '/images/sideMenuLogo.svg',
   dashboardNavIcon: '/images/dashboardNavIcon.svg',

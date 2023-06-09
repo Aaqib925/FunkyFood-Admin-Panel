@@ -10,6 +10,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Controller, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import FirebaseHelper from '@/utils/firebase';
+import { Alert } from '@mantine/core';
+import { useLoginUser } from '@/hooks/login/mutations';
 
 enum InputType {
   EMAIL = 'email',
@@ -44,16 +47,45 @@ const schema = yup.object({
 
 const LoginScreen = () => {
   const isLoaded = useLoaded();
+  const { isLoading: isLoadingLoginUser, mutate: loginUserAction } = useLoginUser();
 
-  const router = useRouter();
+  const [firebaseLoginLoading, setFirebaseLoginLoading] = React.useState(false);
 
   const { control, handleSubmit, formState: { isValid }, watch, setError, clearErrors } = useForm<LoginFormInput>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = useCallback((data: LoginFormInput) => {
-    console.log('FORM SUBMITTED', data);
-    router.push('/dashboard')
+  const router = useRouter();
+  const onSubmit = useCallback(async (data: LoginFormInput) => {
+    try {
+      setFirebaseLoginLoading(true);
+      FirebaseHelper.signInWithEmailAndPassword(data.email, data.password)
+        .then((userCredential) => {
+          const userDetails = userCredential.user;
+          setFirebaseLoginLoading(false);
+          loginUserAction({
+            email: data?.email,
+            password: data.password
+          })
+          router.push('/dashboard');
+        }).catch((error) => {
+          setFirebaseLoginLoading(false);
+          const errorCode = error.code;
+          if (errorCode === 'auth/user-not-found') {
+            alert("User not found, please check your email and password");
+          }
+          else if (errorCode === 'auth/wrong-password') {
+            alert("Wrong password, please check your email and password");
+          }
+          else {
+            alert("Error, something went wrong, please try again");
+          }
+        });
+    }
+    catch (error) {
+      console.log(error, "THIS IS ERROR");
+    }
+
   }, [])
 
   return (
@@ -66,7 +98,7 @@ const LoginScreen = () => {
       <section className={'w-1/2 flex justify-center items-center'}>
         <div>
           <div className={'mb-[35px]'}>
-            <h1 className={'font-[KumbhSans-SemiBold] text-3xl text-black leading-[37px] mb-2'}>Welcome</h1>
+            <h1 className={'font-[KumbhSans-SemiBold] text-3xl text-black leading-[37px] mb-2'}>Welcome To Funky Admin</h1>
             <p className={'font-[KumbhSans-Regular] text-base text-[#78778B] leading-[20px]'}>Welcome! Please enter your details</p>
           </div>
           <div className='w-[404px]'>
@@ -125,9 +157,10 @@ const LoginScreen = () => {
             <div>
               <Button
                 variant='primary'
-                className='rounded-[10px] w-full flex justify-center items-center h-12 bg-[#6FBF50] border-none hover:bg-[#6FBF50] active:bg-[#6FBF5081] disabled:bg-[#6FBF5081]'
+                className='rounded-[10px] w-full flex justify-center items-center h-12 bg-[#F2D799] border-none hover:bg-[#F2D799] active:bg-[#F2D79981] disabled:bg-[#F2D79981]'
                 disabled={!isValid}
                 onClick={handleSubmit(onSubmit)}
+                isLoading={firebaseLoginLoading || isLoadingLoginUser}
               >
                 <span className='font-[KumbhSans-SemiBold] text-base text-[#1B212D] leading-5 '>Sign in</span>
               </Button>
@@ -135,7 +168,7 @@ const LoginScreen = () => {
           </div>
         </div>
       </section>
-      <section className={'w-1/2 bg-[#1C355E] flex justify-center items-center relative z-10 px-12'}>
+      <section className={'w-1/2 bg-[#FEF9EA] flex justify-center items-center relative z-10 px-12'}>
         <div className='absolute z-20 top-0 left-0 w-full bottom-[20%]' style={styles.loginBanner}></div>
         <div className='relative z-30 w-full'>
           <NextImage
