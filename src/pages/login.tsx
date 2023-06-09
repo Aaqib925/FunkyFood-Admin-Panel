@@ -67,7 +67,7 @@ const LoginScreen = () => {
             email: data?.email,
             password: data.password
           })
-          router.push('/dashboard');
+          router.push('/dashboard/products');
         }).catch((error) => {
           setFirebaseLoginLoading(false);
           const errorCode = error.code;
